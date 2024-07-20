@@ -65,11 +65,4 @@ class TB extends BaseController
 		curl_close($ch);
 		echo $result;
 	}
-	
-
-	function out(){
-		$this->load->library('session');
-		$this->session->unset_userdata('some_name');
-
-	}
 }
