@@ -9,26 +9,21 @@ class AirMA extends BaseController
         return view('AirMA');
     }
 
-    function out(){
-		$this->load->library('session');
-		$this->session->unset_userdata('some_name');
-
-	}
-	function postFetchAQI(){
-		//$url = 'http://aqi_service:8000/aqi';
-		$url = 'http://140.117.174.66:8000/aqi/get';
-		$addr=$this->request->GetPost('addr');
-		$date=$this->request->GetPost('date');
-		$period=$this->request->GetPost('period');
-		$url = $url . '?addr=' . urlencode($addr) . '&date=' . urlencode($date) . '&period=' . urlencode($period);
-		
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		
-		$output = curl_exec($ch);
-		curl_close($ch);
-		
-		echo $output;
-	}
+    function postFetchAQI(){
+        //$url = 'http://aqi_service:8000/aqi';
+        $url = 'http://140.117.174.66:8000/aqi/get';
+        $addr=$this->request->GetPost('addr');
+        $date=$this->request->GetPost('date');
+        $period=$this->request->GetPost('period');
+        $url = $url . '?addr=' . urlencode($addr) . '&date=' . urlencode($date) . '&period=' . urlencode($period);
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        $output = curl_exec($ch);
+        curl_close($ch);
+        
+        echo $output;
+    }
 }
