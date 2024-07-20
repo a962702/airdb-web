@@ -12,8 +12,8 @@ class Login extends BaseController
     public function postcheckLogin()
     {
 		if(isset($_POST['account']) && isset($_POST['password'])){
-			$u_account = $this->input->post('account',true);
-			$u_password = $this->input->post('password',true);
+			$u_account = $this->request->GetPost('account');
+			$u_password = $this->request->GetPost('password');
 			$command = '/usr/bin/python3 ./DiseaseFile/Login.py'." ".$u_account." ".$u_password;
 			//exec($command,$result_array);
 			$result_array = ["2"];
