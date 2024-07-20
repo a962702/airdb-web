@@ -349,7 +349,7 @@
                     var date = Based_Day
                     var period = EMA_Days
                     $.ajax({
-                        url: "<?php echo base_url('TB/postFetchAQI') ?>",
+                        url: "<?php echo base_url('TB/FetchAQI') ?>",
                         method: "post",
                         dataType: "json",
                         data: {
@@ -370,7 +370,7 @@
                                 }
                             var ml_data_json = JSON.stringify(ml_data);
                             $.ajax({
-                                url: "<?php echo base_url('TB/postGetResult')?>",
+                                url: "<?php echo base_url('TB/GetResult')?>",
                                 method: "post",
                                 dataType: "json",
                                 data:{
