@@ -4,16 +4,16 @@ namespace App\Controllers;
 
 class Index extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
         $session = session();
         if($session->get('user')!="")
         {
-            redirect()->to(base_url("TB"));
+            return redirect()->to(base_url("TB"));
         }
         else
         {
-            redirect()->to(base_url("Login"));
+            return redirect()->to(base_url("Login"));
         }
     }
 }
