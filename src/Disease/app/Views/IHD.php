@@ -235,7 +235,7 @@
 
     function out() {
         $.ajax({
-            url: "<?php echo base_url('IHD/out')?>",
+            url: "<?php echo base_url('IHD/Logout')?>",
             type: "post",
             success: function (data) {
                 window.location.href = 'Login';
