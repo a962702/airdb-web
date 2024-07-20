@@ -61,6 +61,7 @@ abstract class BaseController extends Controller
      */
     public function postLogout()
     {
+        $session = session();
         $session->remove('user');
     }
 }
