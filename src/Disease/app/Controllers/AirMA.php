@@ -9,7 +9,7 @@ class AirMA extends BaseController
         return view('AirMA');
     }
 
-    function postFetchAQI(){
+    public function postFetchAQI(){
         //$url = 'http://aqi_service:8000/aqi';
         $url = 'http://140.117.174.66:8000/aqi/get';
         $addr=$this->request->GetPost('addr');
