@@ -9,7 +9,8 @@ class ALRD extends BaseController
         return view('ALRD');
     }
     
-    function postGetAllName(){
+    public function postGetAllName()
+    {
         $result_array = array(
             "HBV",
             "HCV",
@@ -29,8 +30,8 @@ class ALRD extends BaseController
         echo json_encode($result_array);
     }
 
-    function postGetResult() {
-
+    public function postGetResult()
+    {
         $url = 'http://model_service:8000/model/ALRD';
         $ml_data=$this->request->GetPost('ml_data');
         
@@ -41,7 +42,8 @@ class ALRD extends BaseController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch,CURLOPT_HTTPHEADER,$headerArray);
         $result = curl_exec($ch);
-        if (!$result) {
+        if (!$result)
+        {
             die("failure connect");
         }
         curl_close($ch);
