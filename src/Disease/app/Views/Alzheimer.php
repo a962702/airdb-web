@@ -235,7 +235,7 @@
 
     function out() {
         $.ajax({
-            url: "<?php echo base_url('Alzheimer/out')?>",
+            url: "<?php echo base_url('Alzheimer/Logout')?>",
             type: "post",
             success: function (data) {
                 window.location.href = 'Login';
