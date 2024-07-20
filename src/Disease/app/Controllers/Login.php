@@ -31,14 +31,16 @@ class Login extends BaseController
 	}
 	function postsetSession()
     {
-		$u_account = $this->request->GetPost('account');
-		$this->session->set('user',$u_account);
+		$session = session();
+        $u_account = $this->request->GetPost('account');
+		$session->set('user',$u_account);
 		echo json_encode($u_account);
 	}
 
 
 	function postgetSession()
     {
-		$this->session->remove('user');
+		$session = session();
+        $session->remove('user');
 	}
 }
