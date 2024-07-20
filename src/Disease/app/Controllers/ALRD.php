@@ -8,27 +8,6 @@ class ALRD extends BaseController
     {
         return view('ALRD');
     }
-    
-    public function postGetAllName()
-    {
-        $result_array = array(
-            "HBV",
-            "HCV",
-            "Cancer",
-            "Dementia",
-            "Hyperlipidemia",
-            "Diabetes Mellitus",
-            "Myocardial Infraction",
-            "Chronic Kidney Disease",
-            "Cerebrovascular Disease",
-            "Congestive Heart Failure",
-            "Peripheral Vascular Disease",
-            "Pneumonia",
-            "Obstructive Lung Disease",
-            "Acute Renal Failure",
-        );
-        echo json_encode($result_array);
-    }
 
     public function postGetResult()
     {
