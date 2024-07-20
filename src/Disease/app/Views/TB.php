@@ -458,15 +458,15 @@
                         },
                         error: function(xhr){
                             switch (xhr.status) {
-								case 403:
-									alert("IP位址不允許");
-									break;
-								case 404:
-									alert("資料欄位不正確");
-									break;
-								default:
-									alert("發生錯誤，請重試一次");
-							}
+                                case 403:
+                                    alert("IP位址不允許");
+                                    break;
+                                case 404:
+                                    alert("資料欄位不正確");
+                                    break;
+                                default:
+                                    alert("發生錯誤，請重試一次");
+                            }
                         }
                     });
                 }
