@@ -9,10 +9,11 @@ class Index extends BaseController
         $session = session();
         if($session->get('user')!="")
         {
-			redirect(base_url("TB"));
-		}else
+            redirect()->to(base_url("TB"));
+        }
+        else
         {
-			redirect(base_url("Login"));
-		}
+            redirect()->to(base_url("Login"));
+        }
     }
 }
