@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Controllers;
+
+class IHD extends BaseController
+{
+    public function getIndex(): string
+    {
+        return view('IHD');
+    }
+
+    public function postGetResult()
+    {
+        $url = 'http://model_service:8000/model/IHD';
+        $ml_data=$this->request->GetPost('ml_data');
+        
+        $headerArray=array("Content-type:application/json;","Accept:application/json");
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $ml_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch,CURLOPT_HTTPHEADER,$headerArray);
+        $result = curl_exec($ch);
+        if (!$result)
+        {
+            die("failure connect");
+        }
+        curl_close($ch);
+        echo $result;
+    }
+}
