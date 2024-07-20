@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-	<?php $this->load->view("basic/Head") ?>
-	<?php $this->load->view("basic/Cssload") ?>
+	<?php echo view("basic/Head") ?>
+	<?php echo view("basic/Cssload") ?>
 
 </head>
 
@@ -13,11 +13,11 @@
 	<div id="wrapper">
 
 		<!-- Top Bar Start -->
-		<?php $this->load->view("basic/Topbar") ?>
+		<?php echo view("basic/Topbar") ?>
 		<!-- Top Bar End -->
 
 		<!-- ========== Left Sidebar Start ========== -->
-		<?php $this->load->view("basic/Leftbar") ?>
+		<?php echo view("basic/Leftbar") ?>
 		<!-- Left Sidebar End -->
 
 		<!-- ============================================================== -->
@@ -134,11 +134,11 @@
 			<!-- ============================================================== -->
 			<!-- End Right content here -->
 			<!-- ============================================================== -->
-			<?php $this->load->view("basic/Footer") ?>
+			<?php echo view("basic/Footer") ?>
 		</div>
 		<!-- END wrapper -->
 
-		<?php $this->load->view("basic/Js") ?>
+		<?php echo view("basic/Js") ?>
 
 
 </body>
