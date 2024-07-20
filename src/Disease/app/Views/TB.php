@@ -476,7 +476,7 @@
 
     function out() {
         $.ajax({
-            url: "<?php echo base_url('TB/out')?>",
+            url: "<?php echo base_url('TB/Logout')?>",
             type: "post",
             success: function (data) {
                 window.location.href = 'Login';
