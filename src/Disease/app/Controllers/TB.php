@@ -11,8 +11,7 @@ class TB extends BaseController
 
 	function postFetchAQI()
 	{
-		//$url = 'http://aqi_service:8000/aqi';
-		$url = 'http://140.117.174.66:8000/aqi/get';
+		$url = 'http://aqi_service:8000/aqi';
 		$addr=$this->request->GetPost('addr');
 		$date=$this->request->GetPost('date');
 		$period=$this->request->GetPost('period');
