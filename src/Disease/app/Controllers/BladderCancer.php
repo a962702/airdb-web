@@ -4,9 +4,16 @@ namespace App\Controllers;
 
 class BladderCancer extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
-        return view('BladderCancer');
+        if($this->session->get('user')!="")
+        {
+            return view('BladderCancer');
+        }
+        else
+        {
+            return redirect()->to(base_url("Login"));
+        }
     }
 
     public function postGetResult()
