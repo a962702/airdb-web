@@ -4,9 +4,16 @@ namespace App\Controllers;
 
 class ALRD extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
-        return view('ALRD');
+        if($this->session->get('user')!="")
+        {
+            return view('ALRD');
+        }
+        else
+        {
+            return redirect()->to(base_url("Login"));
+        }
     }
 
     public function postGetResult()
