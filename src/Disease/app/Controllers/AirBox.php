@@ -4,9 +4,16 @@ namespace App\Controllers;
 
 class AirBox extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
-        return view('AirBox');
+        if($this->session->get('user')!="")
+        {
+            return view('AirBox');
+        }
+        else
+        {
+            return redirect()->to(base_url("Login"));
+        }
     }
 
     public function postGetResult()
