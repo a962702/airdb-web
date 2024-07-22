@@ -166,7 +166,7 @@
                                 "<div class='card m-b-30'> <div class='card-body'> <h8>" + res + "</h8> </div> </div>";
                             
                             document.getElementById("imageShow").innerHTML =
-                                "<img src='<?php echo base_url('airBox/getFigOne')?>?ver=" + timestamp + "'  width='100%'/> <br> <br> <img src='<?php echo base_url('airBox/getFigOne')?>?ver=" + timestamp + "'  width='100%'/>";
+                                "<img src='<?php echo base_url('airBox/getFigOne')?>?ver=" + timestamp + "'  width='100%'/> <br> <br> <img src='<?php echo base_url('airBox/getFigTwo')?>?ver=" + timestamp + "'  width='100%'/>";
                 }
                         /*,
                         error: function (data) {
