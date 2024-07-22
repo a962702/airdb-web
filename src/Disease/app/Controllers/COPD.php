@@ -4,9 +4,16 @@ namespace App\Controllers;
 
 class COPD extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
-        return view('COPD');
+        if($this->session->get('user')!="")
+        {
+            return view('COPD');
+        }
+        else
+        {
+            return redirect()->to(base_url("Login"));
+        }
     }
 
     function postFetchAQI()
