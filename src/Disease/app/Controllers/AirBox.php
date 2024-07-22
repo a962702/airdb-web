@@ -17,7 +17,7 @@ class AirBox extends BaseController
         $headerArray=array("Content-type:application/json;","Accept:application/json");
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, array("address" => $address));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(array("address" => $address)));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch,CURLOPT_HTTPHEADER,$headerArray);
         $result = curl_exec($ch);
