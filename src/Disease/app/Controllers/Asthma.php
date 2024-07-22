@@ -4,9 +4,16 @@ namespace App\Controllers;
 
 class Asthma extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
-        return view('Asthma');
+        if($this->session->get('user')!="")
+        {
+            return view('Asthma');
+        }
+        else
+        {
+            return redirect()->to(base_url("Login"));
+        }
     }
 
     public function postGetResult()
