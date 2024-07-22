@@ -632,7 +632,6 @@
         }
         else
         {
-            /*
             $.ajax({
                 url: "<?php echo base_url('COPD/FetchAQI') ?>",
                 method: "post",
@@ -642,95 +641,6 @@
                     date: $('#aqi_based_Day').val(), 
                     period: $('#aqi_EMA_Days').val(),
                 },
-                success: (result) => {
-                    air_data = result;
-                    $('#aqi_CO').val(air_data["co"]);
-                    $('#aqi_O3').val(air_data["o3"]);
-                    $('#aqi_SO2').val(air_data["so2"]);
-                    $('#aqi_NO').val(air_data["no"]);
-                    $('#aqi_NO2').val(air_data["no2"]);
-                    $('#aqi_NOx').val(air_data["nox"]);
-                    $('#aqi_PM2_5').val(air_data["pm2.5"]);
-                    $('#aqi_PM10').val(air_data["pm10"]);
-                    /*
-                    if (air_data["co"] >= 9.4) {
-                        document.getElementById("CO").style.color = "red";
-                        document.getElementById("CO").innerHTML = air_data["co"] ;
-                    } else {
-                        document.getElementById("CO").style.color = "#00DB00";
-                        document.getElementById("CO").innerHTML = air_data["co"] ;
-                    }
-                    if (air_data["o3"] >= 70) {
-                        document.getElementById("O3").style.color = "red";
-                        document.getElementById("O3").innerHTML = air_data["o3"] ;
-                    } else {
-                        document.getElementById("O3").style.color = "#00DB00";
-                        document.getElementById("O3").innerHTML = air_data["o3"] ;
-                    }
-                    if (air_data["no"] >= 360) {
-                        document.getElementById("NO").style.color = "red";
-                        document.getElementById("NO").innerHTML = air_data["no"] ;
-                    } else {
-                        document.getElementById("NO").style.color = "#00DB00";
-                        document.getElementById("NO").innerHTML = air_data["no"] ;
-                    }
-                    if (air_data["so2"] >= 75) {
-                        document.getElementById("SO2").style.color = "red";
-                        document.getElementById("SO2").innerHTML = air_data["so2"] ;
-                    } else {
-                        document.getElementById("SO2").style.color = "#00DB00";
-                        document.getElementById("SO2").innerHTML = air_data["so2"] ;
-                    }
-                    if (air_data["no2"] >= 100) {
-                        document.getElementById("NO2").style.color = "red";
-                        document.getElementById("NO2").innerHTML = air_data["no2"] ;
-                    } else {
-                        document.getElementById("NO2").style.color = "#00DB00";
-                        document.getElementById("NO2").innerHTML = air_data["no2"] ;
-                    }
-                    if (air_data["nox"] >= 360) {
-                        document.getElementById("NOx").style.color = "red";
-                        document.getElementById("NOx").innerHTML = air_data["nox"] ;
-                    } else {
-                        document.getElementById("NOx").style.color = "#00DB00";
-                        document.getElementById("NOx").innerHTML = air_data["nox"] ;
-                    }
-                    if (air_data["pm2.5"] >= 35.4) {
-                        document.getElementById("PM2.5").style.color = "red";
-                        document.getElementById("PM2.5").innerHTML = air_data["pm2.5"] ;
-                    } else {
-                        document.getElementById("PM2.5").style.color = "#00DB00";
-                        document.getElementById("PM2.5").innerHTML = air_data["pm2.5"] ;
-                    }
-                    if (air_data["pm10"] >= 100) {
-                        document.getElementById("PM10").style.color = "red";
-                        document.getElementById("PM10").innerHTML = air_data["pm10"] ;
-                    } else {
-                        document.getElementById("PM10").style.color = "#00DB00";
-                        document.getElementById("PM10").innerHTML = air_data["pm10"] ;
-                    }
-                    
-                },
-                error: (xhr) => {
-                    switch (xhr.status) {
-                        case 403:
-                            alert("[空汙數據] 您的IP位址不允許");
-                            break;
-                        case 404:
-                            alert("[空汙數據] 資料欄位不正確");
-                            break;
-                        default:
-                            alert("[空汙數據] 發生錯誤，請重試一次");
-                    }
-                }
-            });
-            */
-            url = "http://140.117.174.66:8000/aqi/get?addr=" + addr + "&date=" + date + "&period=" + period
-            encode_url = encodeURI(url)
-            $.ajax({
-                url: encode_url,
-                method: "get",
-                dataType: "json",
                 success: (result) => {
                     air_data = result;
                     $('#aqi_CO').val(air_data["co"]);
