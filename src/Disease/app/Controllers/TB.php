@@ -4,9 +4,16 @@ namespace App\Controllers;
 
 class TB extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
-        return view('TB');
+        if($this->session->get('user')!="")
+        {
+            return view('TB');
+        }
+        else
+        {
+            return redirect()->to(base_url("Login"));
+        }
     }
 
     function postFetchAQI()
