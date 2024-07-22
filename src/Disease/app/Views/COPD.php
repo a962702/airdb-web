@@ -57,7 +57,7 @@
                                         <label class="form-check-label" for="model_14">14天預測模型</label>
                                     </div>
                                     <div class="form-group form-check">
-                                        <input type="radio" class="form-check-input" name="model" id="model_60">
+                                        <input type="radio" class="form-check-input" name="model" id="model_60" checked>
                                         <label class="form-check-label" for="model_60">60天預測模型</label>
                                     </div>
                                 </div>
@@ -872,7 +872,7 @@
                     }
                     ml_data_json = JSON.stringify(ml_data);
                     $.ajax({
-                        url: "<?php echo base_url('COPD/get_data')?>",
+                        url: "<?php echo base_url('COPD/GetResult')?>",
                         method: "post",
                         dataType: "json",
                         data: {
