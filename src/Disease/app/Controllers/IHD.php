@@ -4,9 +4,16 @@ namespace App\Controllers;
 
 class IHD extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
-        return view('IHD');
+        if($this->session->get('user')!="")
+        {
+            return view('IHD');
+        }
+        else
+        {
+            return redirect()->to(base_url("Login"));
+        }
     }
 
     public function postGetResult()
