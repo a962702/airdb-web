@@ -4,9 +4,16 @@ namespace App\Controllers;
 
 class AirMA extends BaseController
 {
-    public function getIndex(): string
+    public function getIndex()
     {
-        return view('AirMA');
+        if($this->session->get('user')!="")
+        {
+            return view('AirMA');
+        }
+        else
+        {
+            return redirect()->to(base_url("Login"));
+        }
     }
 
     public function postFetchAQI(){
