@@ -232,9 +232,24 @@
 </body>
 
 <script type="text/javascript">
+    // Set aqi_based_Day to day before today
+    day = new Date();
+    day.setDate(day.getDate() - 1);
+    day_str = day.toISOString().split('T')[0]
+    $('#Based_Day').val(day_str);
+    aqi_max_day = new Date(day_str);
+
     $(document).ready(function () {
         $('#Input_data_disease').on('submit', function (even) {
             even.preventDefault();
+            // Check date input
+            date = $('#Based_Day').val();
+            aqi_input_day = new Date(date);
+            if (aqi_input_day > aqi_max_day)
+            {
+                window.alert('空汙基準日 輸入錯誤\n可輸入的最大值為' + day_str);
+                return;
+            }
             //var inputTextselect = "";
             var inputText;
             //document.getElementById("epoch").innerHTML = "";
@@ -263,7 +278,7 @@
                               clearInterval(timerInterval)
                               Swal.close();
                           }
-                        }, 2000)
+                        }, 100)
                       },
                       willClose: () => {
                         clearInterval(timerInterval)
