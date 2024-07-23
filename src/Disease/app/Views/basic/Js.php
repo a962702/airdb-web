@@ -1,6 +1,6 @@
 <!-- jQuery  -->
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fzFFyH01cBVPYzl16KT40wqjhgPtq6FFUB6ckN2+GGw=" crossorigin="anonymous"></script>
 <script src="<?php echo base_url() . 'assets/js/metismenu.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/jquery.slimscroll.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/waves.min.js' ?>"></script>
