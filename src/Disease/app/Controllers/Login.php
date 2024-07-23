@@ -15,6 +15,14 @@ class Login extends BaseController
         {
             $u_account = $this->request->GetPost('account');
             $u_password = $this->request->GetPost('password');
+            if ($u_account == "1" && $u_password == "1"){
+                $result_array = ["2"];
+                echo json_encode($result_array);
+            } else {
+                $result_array = ["0"];
+                echo json_encode($result_array);
+            }
+            /*
             $command = '/usr/bin/python3 ./DiseaseFile/Login.py'." ".$u_account." ".$u_password;
             //exec($command,$result_array);
             $result_array = ["2"];
@@ -32,6 +40,7 @@ class Login extends BaseController
             {
                 echo json_encode($result_array);
             }
+            */
         }
     }
     function postsetSession()
