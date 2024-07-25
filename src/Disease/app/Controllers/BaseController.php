@@ -42,9 +42,7 @@ abstract class BaseController extends Controller
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
     protected $session;
-    protected $db_host = 'airdb_db';
-    protected $db_user = 'web';
-    protected $db_password = 'Fd9vsJW/]5DeS@Ul';
+    protected $db;
 
     /**
      * @return void
@@ -57,6 +55,7 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         $this->session = \Config\Services::session();
+        $this->db = \Config\Database::connect();
     }
 
     /**

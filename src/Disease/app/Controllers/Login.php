@@ -11,36 +11,30 @@ class Login extends BaseController
 
     public function postcheckLogin()
     {
-        if(isset($_POST['account']) && isset($_POST['password']))
+        $u_account = $this->request->GetPost('account');
+        $u_password = $this->request->GetPost('password');
+        if(!is_null($u_account) && !is_null($u_password))
         {
-            $u_account = $this->request->GetPost('account');
-            $u_password = $this->request->GetPost('password');
-            if ($u_account == "1" && $u_password == "1"){
-                $result_array = ["2"];
-                echo json_encode($result_array);
-            } else {
-                $result_array = ["0"];
-                echo json_encode($result_array);
-            }
-            /*
-            $command = '/usr/bin/python3 ./DiseaseFile/Login.py'." ".$u_account." ".$u_password;
-            //exec($command,$result_array);
-            $result_array = ["2"];
-            if(!strcmp($result_array[0],"2")
-            ){
-                echo json_encode($result_array);
-                exit(0);
-            }
-            
-            if($result_array[0]==="2")
+            $row = $this->db->table('user')->where('account', $u_account)->get()->getRow();
+            if (isset($row))
             {
-                echo json_encode($result_array);
+                if ($row->password == $u_password)
+                {
+                    if ($row->state == 'Y')
+                    {
+                        return json_encode([2]); // account / password / state match
+                    }
+                    else
+                    {
+                        return json_encode([1]); // account and password match, but state not match
+                    }
+                }
+                else
+                {
+                    return json_encode([3]); // account match, but password not match
+                }
             }
-            else
-            {
-                echo json_encode($result_array);
-            }
-            */
+            return json_encode([0]); // account not match
         }
     }
     function postsetSession()
