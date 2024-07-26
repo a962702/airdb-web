@@ -18,7 +18,7 @@ class BladderCancer extends BaseController
 
     public function postGetResult()
     {
-        $url = 'http://model_service:8000/model/BladderCancer';
+        $url = 'http://airdb_model_BladderCancer:8000/predict';
         $ml_data=$this->request->GetPost('ml_data');
         
         $headerArray=array("Content-type:application/json;","Accept:application/json");
