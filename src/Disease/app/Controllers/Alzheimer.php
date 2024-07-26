@@ -18,7 +18,7 @@ class Alzheimer extends BaseController
 
     public function postGetResult()
     {
-        $url = 'http://model_service:8000/model/Alzheimer';
+        $url = 'http://airdb_model_Alzheimer:8000/predict';
         $ml_data=$this->request->GetPost('ml_data');
         
         $headerArray=array("Content-type:application/json;","Accept:application/json");
