@@ -18,7 +18,7 @@ class TB extends BaseController
 
     function postFetchAQI()
     {
-        $url = 'http://aqi:8000/aqi/get';
+        $url = 'http://airdb_aqi:8000/aqi/get';
         $addr=$this->request->GetPost('addr');
         $date=$this->request->GetPost('date');
         $period=$this->request->GetPost('period');
@@ -36,7 +36,7 @@ class TB extends BaseController
 
     function postGetResult()
     {
-        $url = 'http://model_TB:8000/predict';
+        $url = 'http://airdb_model_TB:8000/predict';
         $ml_data=$this->request->GetPost('ml_data');
         
         $headerArray=array("Content-type:application/json;","Accept:application/json");
