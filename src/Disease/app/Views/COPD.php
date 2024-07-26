@@ -723,114 +723,109 @@
                     period: $('#aqi_EMA_Days').val(),
                 },
                 success: (result) => {
-                    air_data = result;
-                    $('#aqi_CO').val(air_data["co"]);
-                    $('#aqi_O3').val(air_data["o3"]);
-                    $('#aqi_SO2').val(air_data["so2"]);
-                    $('#aqi_NO').val(air_data["no"]);
-                    $('#aqi_NO2').val(air_data["no2"]);
-                    $('#aqi_NOx').val(air_data["nox"]);
-                    $('#aqi_PM2_5').val(air_data["pm2.5"]);
-                    $('#aqi_PM10').val(air_data["pm10"]);
+                    if (result['detail'])
+                    {
+                        window.alert('[空汙數據] 發生錯誤！\n錯誤訊息：' + result['detail']);
+                    }
+                    else
+                    {
+                        air_data = result;
+                        $('#aqi_CO').val(air_data["co"]);
+                        $('#aqi_O3').val(air_data["o3"]);
+                        $('#aqi_SO2').val(air_data["so2"]);
+                        $('#aqi_NO').val(air_data["no"]);
+                        $('#aqi_NO2').val(air_data["no2"]);
+                        $('#aqi_NOx').val(air_data["nox"]);
+                        $('#aqi_PM2_5').val(air_data["pm2.5"]);
+                        $('#aqi_PM10').val(air_data["pm10"]);
+                    }
                 },
                 error: (xhr) => {
-                    switch (xhr.status) {
-                        case 403:
-                            alert("[空汙數據] 您的IP位址不允許");
-                            break;
-                        case 404:
-                            alert("[空汙數據] 資料欄位不正確");
-                            break;
-                        default:
-                            alert("[空汙數據] 發生錯誤，請重試一次");
-                    }
+                    alert("[空汙數據] 發生錯誤，請重試一次");
                 }
             });
         }
     })
 
-    $(document).ready(() => {
-        $('#btn_predict').on('click', () => {
-            $.ajax({
-                url: "<?php echo base_url('COPD/getAllName')?>",
-                method: "post",
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    Swal.fire({
-                        title: '模型運算中!',
-                        html: '剩餘 <b></b> %',
-                        timer: 1000,
-                        timerProgressBar: true,
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                b.textContent = Math.round(Swal.getTimerLeft() / 1000 * 100)
-                                if (document.getElementById("epoch").innerHTML != "") {
-                                    clearInterval(timerInterval)
-                                    Swal.close();
-                                }
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
-                            console.log('I was closed by the timer')
-                        }
-                    })
-
-                    Return_data = JSON.parse(data);
-                    inputTextselect = "";
-                    for (i = 0; i < Return_data.length; i++) {
-                        DiseaseName = document.getElementById(Return_data[i].replaceAll(' ', '_'));
-                        if (DiseaseName.checked == true) {//concate disease name
-                            inputTextselect += ("1" + " ");
-                        }
-                        else {
-                            inputTextselect += ("0" + " ")
-                        }
+    $('#btn_predict').on('click', () => {
+        $('#epoch').text("");
+        Swal.fire({
+            title: '模型運算中!',
+            html: '剩餘 <b></b> %',
+            timer: 5000,
+            timerProgressBar: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: () => {
+                Swal.showLoading();
+                const b = Swal.getHtmlContainer().querySelector('b');
+                timerInterval = setInterval(() => {
+                    b.textContent = Math.round(Swal.getTimerLeft() / 5000 * 100);
+                    if ($('#epoch').text() != "") {
+                        clearInterval(timerInterval)
+                        Swal.close();
                     }
-                    inputTextselect = inputTextselect.substring(0, inputTextselect.length - 1).replaceAll(' ', ',');
-                    array = inputTextselect.split(",").map(Number);
-                    ml_data = {
-                        sO2c: document.getElementById("Input_data_sO2c").value,
-                        dis_list: array,
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
+
+        $.ajax({
+            url: "<?php echo base_url('COPD/getAllName')?>",
+            method: "post",
+            success: function (data) {
+                Return_data = JSON.parse(data);
+                selected_disease = [];
+                for (i = 0; i < Return_data.length; i++) {
+                    if ($('#' + Return_data[i].replaceAll(' ', '_')).is(':checked'))
+                    {
+                        selected_disease.push(1);
                     }
-                    ml_data_json = JSON.stringify(ml_data);
-                    $.ajax({
-                        url: "<?php echo base_url('COPD/GetResult')?>",
-                        method: "post",
-                        dataType: "json",
-                        data: {
-                            ml_data: ml_data_json,
-                        },
-                        success: function (data) {
-
-                            res = Number(data);
-                            if (res >= 80) {
-                                document.getElementById("epoch").style.color = "#00DB00";
-                                document.getElementById("epoch").innerHTML = parseFloat(res).toFixed(3) + "%";
-                            }else{
-                                document.getElementById("epoch").style.color = "red";
-                                document.getElementById("epoch").innerHTML = parseFloat(res).toFixed(3) + "%";
-                            }
-
-
-                        },
-                        error: function (data) {
-                            document.getElementById("epoch").style.color = "red";
-                            document.getElementById("epoch").innerHTML = "ERROR!";
-                        }
-                    });
+                    else
+                    {
+                        selected_disease.push(0);
+                    }
                 }
-            });
+                ml_data = {
+                    sO2c: $('#Input_data_sO2c').val(),
+                    dis_list: selected_disease,
+                }
+                $.ajax({
+                    url: "<?php echo base_url('COPD/GetResult')?>",
+                    method: "post",
+                    dataType: "json",
+                    data: {
+                        ml_data: JSON.stringify(ml_data),
+                    },
+                    success: (data) => {
+
+                        res = Number(data);
+                        $('#epoch').text(parseFloat(res).toFixed(3) + "%");
+                        if (res >= 80) {
+                            $('#epoch').css('color', '#00DB00');
+                        }else{
+                            $('#epoch').css('color', 'red');
+                        }
+
+
+                    },
+                    error: () => {
+                        $('#epoch').css('color', 'red');
+                        $('#epoch').text('ERROR!');
+                    }
+                });
+            },
+            error: () => {
+                $('#epoch').css('color', 'red');
+                $('#epoch').text('ERROR!');
+            }
         });
     });
 
