@@ -18,7 +18,7 @@ class LungCancer extends BaseController
 
     public function postGetResult()
     {
-        $url = 'http://model_service:8000/model/LungCancer';
+        $url = 'http://airdb_model_LungCancer:8000/predict';
         $ml_data=$this->request->GetPost('ml_data');
         
         $headerArray=array("Content-type:application/json;","Accept:application/json");
