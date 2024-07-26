@@ -16,8 +16,9 @@ class AirMA extends BaseController
         }
     }
 
-    public function postFetchAQI(){
-        $url = 'http://aqi:8000/aqi/get';
+    public function postFetchAQI()
+    {
+        $url = 'http://airdb_aqi:8000/aqi/get';
         $addr=$this->request->GetPost('addr');
         $date=$this->request->GetPost('date');
         $period=$this->request->GetPost('period');
