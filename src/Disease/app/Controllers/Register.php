@@ -14,8 +14,18 @@ class Register extends BaseController
         $u_account = $this->request->GetPost('account');
         $u_password = $this->request->GetPost('password');
         $u_department = $this->request->GetPost('department');
-        $command = '/usr/bin/python3 ./DiseaseFile/Register.py'." ".$u_account." ".$u_password." ".$u_department;
-        exec($command,$result_array);
-        return json_encode($result_array);
+        $row = $this->db->table('user')->where('account', $u_account)->get()->getRow();
+        if (isset($row))
+        {
+            return json_encode([1]); // Account has been registered
+        }
+        $new_user = [
+            'account' => $u_account,
+            'password' => $u_password,
+            'department' => $u_department,
+            'state' => 'N',
+        ];
+        $this->db->table('user')->insert($new_user);
+        return json_encode([0]); // Account added
     }
 }
