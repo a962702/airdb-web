@@ -1,4 +1,4 @@
-FROM php:8.2-apache@sha256:7cdd4d8f929902fa489d0ddba39a0ae3b13dc5c3cc9d75534166c145fccdb856
+FROM php:8.2-apache@sha256:037d0a073246f73cf75c5fe95f67e9d14ce5224f08f0df78a6f29af97b9850f7
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
